@@ -25,7 +25,7 @@ export const getResultByVehicleId = async (id: number) => {
   }
 };
 
-export const addVehicleResult = async (data) => {
+export const addVehicleResult = async (data: any) => {
   try {
     const result = await prisma.result.create({
       data: {
@@ -102,7 +102,7 @@ export const addVehicleResult = async (data) => {
     return { error };
   }
 };
-export const updateVehicleResult = async (data) => {
+export const updateVehicleResult = async (data: any) => {
   try {
     const result = await prisma.result.update({
       where: { vehicleId: data.vehicleId },
@@ -182,7 +182,7 @@ export const updateVehicleResult = async (data) => {
   }
 };
 
-export const deleteVehicleResult = async (id) => {
+export const deleteVehicleResult = async (id: number) => {
   try {
     const result = await prisma.result.delete({
       where: {
