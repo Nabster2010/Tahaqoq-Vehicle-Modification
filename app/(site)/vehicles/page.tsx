@@ -5,7 +5,7 @@ import Link from "next/link";
 import Pagination from "../../components/pagination";
 import SearchForm from "../../components/searchForm";
 import Vehicle from "../../components/vehicle";
-export const PAGE_SIZE = 10;
+const PAGE_SIZE = 10;
 
 const page = async ({ searchParams }: { searchParams: UrlSearchParams }) => {
   const page: number = !!searchParams.page ? parseInt(searchParams.page) : 1;
