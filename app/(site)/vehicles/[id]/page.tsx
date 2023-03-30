@@ -19,7 +19,7 @@ const page = async ({
 
 export default page;
 
-const VehicleInfoSection = ({ vehicle }: { vehicle: Vehicle }) => {
+const VehicleInfoSection = ({ vehicle }: any) => {
   const deserializedVehicle = JSON.stringify(vehicle);
 
   return (
