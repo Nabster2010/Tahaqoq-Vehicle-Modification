@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import Link from "next/link";
 import { FC } from "react";
-import { PAGE_SIZE } from "../(site)/vehicles/page";
+const PAGE_SIZE = 10;
 
 type PaginationProps = {
   totalPages: number | undefined;
