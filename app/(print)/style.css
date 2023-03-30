@@ -1,0 +1,23 @@
+@page {
+  size: A4;
+}
+
+.title {
+  @apply text-base font-bold;
+}
+.subtitle {
+  @apply text-xs font-bold;
+}
+
+th {
+  @apply subtitle;
+}
+th,
+td {
+  @apply p-1 text-start;
+}
+td,
+th,
+tr {
+  @apply border;
+}
