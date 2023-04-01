@@ -33,14 +33,10 @@ const Header = () => {
             <li>
               <Link href="/vehicles">Vehicles</Link>
             </li>
-
-            <li>
-              <Link href={"/reports"}>Reports</Link>
-            </li>
           </ul>
         </div>
         <Link href="/" className="text-xl normal-case btn btn-ghost">
-          TAHAQOQ
+          <span>TAHAQOQ</span>
         </Link>
       </div>
       <div className="hidden navbar-center lg:flex">
@@ -48,14 +44,10 @@ const Header = () => {
           <li>
             <Link href="/vehicles">Vehicles</Link>
           </li>
-
-          <li>
-            <Link href={"/reports"}>Reports</Link>
-          </li>
         </ul>
       </div>
       <div className="navbar-end">
-        <div className="flex items-center justify-center gap-4 mx-4">
+        <div className="items-center justify-center hidden gap-4 mx-4 md:flex">
           <div className="avatar">
             <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
               <Image

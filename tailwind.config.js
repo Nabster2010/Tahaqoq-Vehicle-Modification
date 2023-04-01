@@ -13,6 +13,7 @@ module.exports = {
       fontFamily: {
         inter: ["var(--font-inter)"],
         cairo: ["var(--font-cairo)"],
+        noto: ["var(--font-noto)"],
       },
     },
   },

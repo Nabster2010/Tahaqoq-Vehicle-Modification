@@ -3,10 +3,10 @@
 }
 
 .title {
-  @apply text-base font-bold;
+  @apply text-xl font-bold;
 }
 .subtitle {
-  @apply text-xs font-bold;
+  @apply text-sm font-semibold;
 }
 
 th {
@@ -20,4 +20,7 @@ td,
 th,
 tr {
   @apply border;
+}
+tr {
+  @apply leading-4;
 }

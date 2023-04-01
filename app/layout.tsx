@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Cairo, Inter } from "next/font/google";
+import { Cairo, Inter, Noto_Naskh_Arabic } from "next/font/google";
 import { getServerSession, Session } from "next-auth";
 import { headers } from "next/headers";
 import AuthContext from "./context/authContext";
@@ -13,10 +13,14 @@ const cairo = Cairo({
   subsets: ["arabic", "latin"],
   variable: "--font-cairo",
 });
+const noto = Noto_Naskh_Arabic({
+  subsets: ["arabic", "latin"],
+  variable: "--font-noto",
+});
 
 export const metadata = {
   title: "Tahaqoq",
-  description: "Tahaqoq Vehicle app",
+  description: "Tahaqoq Vehicle Inspection Center",
 };
 
 // next auth
