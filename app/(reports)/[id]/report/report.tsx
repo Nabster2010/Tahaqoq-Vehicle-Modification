@@ -59,17 +59,18 @@ const Report = ({ vehicle }: any) => {
             <table className="w-full [&_th]:w-[140px]">
               <tbody className="">
                 <tr className="">
-                  <th>نـوع المركبــة</th>
-                  <td>{vehicle.type} </td>
-                  <th> المـــوديل</th>
-                  <td>{vehicle.modelYear} </td>
-                </tr>
-                <tr className="">
                   <th>رقــم اللوحـــة</th>
                   <td>{vehicle.palette} </td>
                   <th> اســم المـالك</th>
                   <td>{vehicle.owner} </td>
                 </tr>
+                <tr className="">
+                  <th>نـوع المركبــة</th>
+                  <td>{vehicle.type} </td>
+                  <th> المـــوديل</th>
+                  <td>{vehicle.modelYear} </td>
+                </tr>
+
                 <tr className="">
                   <th> رقــم الاحــالة</th>
                   <td>{vehicle.requestNo} </td>
@@ -79,14 +80,14 @@ const Report = ({ vehicle }: any) => {
                 <tr className="">
                   <th> مصدر الاحالة</th>
                   <td>{vehicle.requestOrigin} </td>
-                  <th> الطراز الحالي</th>
-                  <td>{vehicle.oldModel} </td>
-                </tr>
-                <tr>
-                  <th> الطراز الجديد</th>
-                  <td>{vehicle.newModel} </td>
                   <th>رقـم الــحاسب</th>
                   <td>{vehicle.computerNo} </td>
+                </tr>
+                <tr>
+                  <th> الطراز الحالي</th>
+                  <td>{vehicle.oldModel} </td>
+                  <th> الطراز الجديد</th>
+                  <td>{vehicle.newModel} </td>
                 </tr>
                 <tr className="">
                   <th> اسم مركز التعديل</th>
