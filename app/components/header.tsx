@@ -1,10 +1,12 @@
 "use client";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { ChangeEvent } from "react";
 
 const Header = () => {
   const { data: session } = useSession();
+  const changeTheme = (e: ChangeEvent<HTMLInputElement>) => {};
 
   return (
     <div className="navbar bg-base-300">
@@ -60,6 +62,7 @@ const Header = () => {
           </div>
           <span>{session?.user?.name}</span>
         </div>
+
         <button onClick={() => signOut()} className="btn">
           Sign out
         </button>
