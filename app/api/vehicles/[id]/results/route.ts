@@ -6,10 +6,7 @@ import {
 } from "@/lib/prisma/result";
 import { NextResponse } from "next/server";
 
-export async function GET(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function GET({ params }: { params: { id: string } }) {
   const result = await getResultByVehicleId(parseInt(params.id));
   return NextResponse.json({ result });
 }
@@ -31,10 +28,7 @@ export async function PUT(
   const result = await updateVehicleResult(data);
   return NextResponse.json({ result });
 }
-export async function DELETE(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE({ params }: { params: { id: string } }) {
   const result = await deleteVehicleResult(parseInt(params.id));
   return NextResponse.json({ result });
 }
