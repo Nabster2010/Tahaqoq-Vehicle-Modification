@@ -17,14 +17,14 @@ const page = async ({ searchParams }: { searchParams: UrlSearchParams }) => {
   const { vehicles, totalPages } = await getVehicles(page, pageSize, search);
 
   return (
-    <div className="">
+    <div className="flex flex-col ">
       <div className="flex justify-between mt-8">
         <SearchForm page={page} pageSize={pageSize} />
         <Link href={"/vehicles/new"} className="ml-4 btn btn-primary">
           New Vehicle
         </Link>
       </div>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto ">
         <table className="table w-full mt-8 table-normal">
           {/* head */}
           <thead>
@@ -45,7 +45,7 @@ const page = async ({ searchParams }: { searchParams: UrlSearchParams }) => {
           </tbody>
         </table>
       </div>
-      <div className="flex items-center justify-center my-8">
+      <div className="flex items-center justify-center my-8 ">
         <Pagination totalPages={totalPages} currentPage={page} />
       </div>
     </div>

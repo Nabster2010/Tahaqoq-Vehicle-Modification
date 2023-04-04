@@ -21,41 +21,68 @@ const Pagination: FC<PaginationProps> = ({
     return currentPage - 1;
   };
   return (
-    <nav aria-label="Page navigation example">
-      <ul className="inline-flex -space-x-px">
-        <li>
-          <Link
-            href={`/vehicles?page=${prevPage()}&pageSize=${PAGE_SIZE}`}
-            className="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          >
-            Previous
-          </Link>
-        </li>
-        {pagesArr.map((page) => (
-          <li key={page}>
-            <Link
-              href={`/vehicles?page=${page}&pageSize=${PAGE_SIZE}`}
-              className={classNames(
-                "px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
-                currentPage === page &&
-                  "text-gray-700 bg-gray-100 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-600 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
-              )}
-            >
-              {page}
-            </Link>
-          </li>
-        ))}
+    // <nav aria-label="Page navigation example">
+    //   <ul className="inline-flex -space-x-px">
+    //     <li>
+    //       <Link
+    //         href={`/vehicles?page=${prevPage()}&pageSize=${PAGE_SIZE}`}
+    //         className="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+    //       >
+    //         Previous
+    //       </Link>
+    //     </li>
+    //     {pagesArr.map((page) => (
+    //       <li key={page}>
+    //         <Link
+    //           href={`/vehicles?page=${page}&pageSize=${PAGE_SIZE}`}
+    //           className={classNames(
+    //             "px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
+    //             currentPage === page &&
+    //               "text-gray-700 bg-gray-100 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-600 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
+    //           )}
+    //         >
+    //           {page}
+    //         </Link>
+    //       </li>
+    //     ))}
 
-        <li>
-          <Link
-            href={`/vehicles?page=${nextPage()}&pageSize=${PAGE_SIZE}`}
-            className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          >
-            Next
-          </Link>
-        </li>
-      </ul>
-    </nav>
+    //     <li>
+    //       <Link
+    //         href={`/vehicles?page=${nextPage()}&pageSize=${PAGE_SIZE}`}
+    //         className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+    //       >
+    //         Next
+    //       </Link>
+    //     </li>
+    //   </ul>
+    // </nav>
+    <div className="btn-group">
+      <Link
+        href={`/vehicles?page=${prevPage()}&pageSize=${PAGE_SIZE}`}
+        className="btn btn-sm"
+      >
+        Prev
+      </Link>
+      {pagesArr.map((page) => (
+        <Link
+          key={page}
+          href={`/vehicles?page=${page}&pageSize=${PAGE_SIZE}`}
+          className={classNames(
+            "btn btn-sm",
+            currentPage === page && "btn-active"
+          )}
+        >
+          {page}
+        </Link>
+      ))}
+
+      <Link
+        href={`/vehicles?page=${nextPage()}&pageSize=${PAGE_SIZE}`}
+        className="btn btn-sm"
+      >
+        Next
+      </Link>
+    </div>
   );
 };
 

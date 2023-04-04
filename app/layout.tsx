@@ -4,6 +4,7 @@ import { getServerSession, Session } from "next-auth";
 import { headers } from "next/headers";
 import AuthContext from "./context/authContext";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { MyThemeContextProvider } from "./context/themeContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -47,7 +48,9 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${cairo.variable}`}>
       <body className="flex flex-col min-h-screen">
-        <AuthContext session={session}>{children}</AuthContext>
+        <MyThemeContextProvider>
+          <AuthContext session={session}>{children}</AuthContext>
+        </MyThemeContextProvider>
       </body>
     </html>
   );
