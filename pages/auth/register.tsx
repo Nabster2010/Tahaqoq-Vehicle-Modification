@@ -1,4 +1,3 @@
-"use client";
 import "../../app/globals.css";
 import classNames from "classnames";
 import { useRouter } from "next/router";

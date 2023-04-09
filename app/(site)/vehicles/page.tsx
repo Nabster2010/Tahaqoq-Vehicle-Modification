@@ -46,7 +46,11 @@ const page = async ({ searchParams }: { searchParams: UrlSearchParams }) => {
         </table>
       </div>
       <div className="flex items-center justify-center my-8 ">
-        <Pagination totalPages={totalPages} currentPage={page} />
+        <Pagination
+          totalPages={totalPages}
+          currentPage={page}
+          pageSize={pageSize}
+        />
       </div>
     </div>
   );
