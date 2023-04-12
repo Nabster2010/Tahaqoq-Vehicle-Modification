@@ -1,5 +1,6 @@
 import { getVehicleById } from "@/lib/prisma/vehicle";
 import Report from "./report";
+import Link from "next/link";
 
 export async function generateMetadata({ params }: any) {
   const vehicle: any = await getVehicleById(parseInt(params.id));
@@ -14,6 +15,13 @@ const page = async ({ params }: any) => {
 
   return (
     <>
+      <Link
+        href={`/api/pdf/${params.id}`}
+        id="print-btn"
+        className="absolute top-0 left-0 btn"
+      >
+        Save PDF
+      </Link>
       <Report vehicle={vehicle} />
     </>
   );

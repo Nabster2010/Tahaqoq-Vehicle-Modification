@@ -6,6 +6,6 @@ export const config = {
      * - auth
      */
     // "/((?!auth).*)",
-    "/((?!auth|api/users).*)", //if you want to access register user
+    "/((?!auth|api/users|api/pdf|.*report$|.*letter$).*)", //if you want to access register user
   ],
 };

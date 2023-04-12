@@ -84,7 +84,7 @@ export default function SignIn({
                 </div>
               )}
 
-              <button type="submit" className="btn btn-block">
+              <button type="submit" id="submit" className="btn btn-block">
                 SIGN IN
               </button>
             </form>
