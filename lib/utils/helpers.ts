@@ -1,4 +1,4 @@
-import { Result, Test } from "@/types";
+import { Result } from "@/types";
 import bcrypt from "bcrypt";
 
 export function leadingZeros(num: number, totalLength: number) {
