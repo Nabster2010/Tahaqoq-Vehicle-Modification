@@ -70,3 +70,19 @@ export type Vehicles = {
   totalPages: number | undefined;
   currentPage: number | undefined;
 };
+export type SiteConfig = {
+  title: string;
+  branch: string;
+  ar_branch: string;
+  description: string;
+  address: string;
+  ar_address: string;
+  phone: string;
+  email: string;
+  url: string;
+  ogImage: string;
+  links: {
+    twitter: string;
+    github: string;
+  };
+};
