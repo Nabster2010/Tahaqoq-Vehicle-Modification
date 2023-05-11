@@ -1,9 +1,9 @@
 import "./globals.css";
 import { Cairo, Inter, Noto_Naskh_Arabic } from "next/font/google";
-import { getServerSession } from "next-auth";
-import AuthContext from "./context/authContext";
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { MyThemeContextProvider } from "./context/themeContext";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route";
+import AuthProvider from "./components/authProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,12 +28,12 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session: any = await getServerSession(authOptions);
+  // const session: any = getServerSession(authOptions);
   return (
     <html lang="en" className={`${inter.variable} ${cairo.variable}`}>
-      <body className="flex flex-col min-h-screen">
+      <body className="flex flex-col min-h-screen ">
         <MyThemeContextProvider>
-          <AuthContext session={session}>{children}</AuthContext>
+          <AuthProvider>{children}</AuthProvider>
         </MyThemeContextProvider>
       </body>
     </html>

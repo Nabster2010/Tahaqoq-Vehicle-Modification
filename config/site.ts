@@ -16,3 +16,19 @@ export const siteConfig: SiteConfig = {
     github: "",
   },
 };
+// export const siteConfig: SiteConfig = {
+//   title: "TAHAQOQ ",
+//   branch: "JEDDAH",
+//   ar_branch: "جدة",
+//   address: "Car Exhibitions,Jawhara , Jeddah ,KSA",
+//   ar_address: " الجوهرة ،معارض السيارات،جدة،السعودية",
+//   phone: "0502956801",
+//   email: "info@tahaqoq.com",
+//   description: "VEHICLE INSPECTION CENTER",
+//   url: "https://tahaqoq.com/",
+//   ogImage: "",
+//   links: {
+//     twitter: "https://twitter.com/TahaqoqCo",
+//     github: "",
+//   },
+// };
