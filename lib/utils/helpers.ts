@@ -31,7 +31,7 @@ export const arabicDate = (date: any) => {
   return formatter.format(date);
 };
 export const formatDate = (date: any) => {
-  const formatter = Intl.DateTimeFormat("ar-eg", {
+  const formatter = Intl.DateTimeFormat("ar-ae", {
     dateStyle: "short",
   });
   return formatter.format(date);

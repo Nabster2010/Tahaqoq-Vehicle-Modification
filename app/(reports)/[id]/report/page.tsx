@@ -1,6 +1,11 @@
+import dynamic from "next/dynamic";
+import { arabicDate, finalResult, formatDate } from "@/lib/utils/helpers";
+const Report = dynamic(() => import("./ReportPDF"), {
+  ssr: false,
+});
+
 import { getVehicleById } from "@/lib/prisma/vehicle";
-import Report from "./report";
-import Link from "next/link";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }: any) {
   const vehicle: any = await getVehicleById(parseInt(params.id));
@@ -10,13 +15,19 @@ export async function generateMetadata({ params }: any) {
 const page = async ({ params }: any) => {
   const vehicleId = parseInt(params.id);
   const vehicle: any = await getVehicleById(vehicleId);
-  if (!vehicle) return <h1>vehicle not found</h1>;
+  if (!vehicle) return notFound();
   if (vehicle?.result === null) return <h1>Vehicle has no result</h1>;
+  const result = finalResult(vehicle.result);
 
   return (
-    <>
-      <Report vehicle={vehicle} />
-    </>
+    <Report
+      data={JSON.stringify({
+        ...vehicle,
+        date: formatDate(vehicle.createdAt),
+        arabicDate: arabicDate(vehicle.createdAt),
+        finalResult: result,
+      })}
+    />
   );
 };
 

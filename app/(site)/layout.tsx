@@ -1,5 +1,11 @@
 import Header from "../components/header";
 import Footer from "../components/footer";
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 
 export default async function RootLayout({
   children,
@@ -7,9 +13,13 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col min-h-screen bg-[url('/grid.svg')] bg-opacity-40 ">
+    <div
+      className={`${inter.variable} flex flex-col min-h-screen bg-[url('/grid.svg')] font-inter `}
+    >
       <Header />
-      <main className="w-full px-8 mx-auto md:max-w-6xl grow">{children}</main>
+      <main className="w-full px-8 mx-auto md:max-w-6xl grow font-inter">
+        {children}
+      </main>
       <Footer />
     </div>
   );

@@ -29,7 +29,7 @@ const Report = ({ vehicle }: any) => {
               <span className="subtitle">تاريخ:</span>
               <span>{formatDate(createdAt)}</span>
               <span className="subtitle">الموافق:</span>
-              <span>{arabicDate(createdAt)}</span>
+              <span className="whitespace-nowrap">{arabicDate(createdAt)}</span>
             </div>
           </div>
 
@@ -43,9 +43,9 @@ const Report = ({ vehicle }: any) => {
             />
           </div>
         </div>
-        <div className="w-full h-[1.5px] mt-2 bg-gray-500 " />
       </header>
-      <main className="grow">
+      <div className="w-full h-[1.5px] mt-2 bg-gray-500 "></div>
+      <main className="">
         {/* معلومات المركبه */}
         <section className="mt-4">
           <h1 className="text-lg text-center  mb-0.5 title">

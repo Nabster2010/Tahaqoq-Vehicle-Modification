@@ -1,10 +1,10 @@
 import { getVehicles } from "@/lib/prisma/vehicle";
 import { UrlSearchParams } from "@/types";
-
 import Link from "next/link";
 import Pagination from "../../components/pagination";
 import SearchForm from "../../components/searchForm";
 import Vehicle from "../../components/vehicle";
+
 const PAGE_SIZE = 10;
 
 const page = async ({ searchParams }: { searchParams: UrlSearchParams }) => {
@@ -17,16 +17,15 @@ const page = async ({ searchParams }: { searchParams: UrlSearchParams }) => {
   const { vehicles, totalPages } = await getVehicles(page, pageSize, search);
 
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col">
       <div className="flex justify-between mt-8">
-        <SearchForm page={page} pageSize={pageSize} />
+        <SearchForm />
         <Link href={"/vehicles/new"} className="ml-4 btn btn-primary">
           New Vehicle
         </Link>
       </div>
       <div className="overflow-x-auto ">
         <table className="table w-full mt-8 table-normal">
-          {/* head */}
           <thead>
             <tr>
               <th>Title</th>
