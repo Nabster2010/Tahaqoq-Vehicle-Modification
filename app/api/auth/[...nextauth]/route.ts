@@ -14,7 +14,7 @@ export const authOptions: AuthOptions = {
         },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials: any, req: any): Promise<any> {
+      async authorize(credentials: any): Promise<any> {
         const { email, password } = credentials;
         try {
           const user: any = await getUserByEmail(email);
@@ -33,18 +33,22 @@ export const authOptions: AuthOptions = {
       },
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 Days
+  },
+
   callbacks: {
     signIn({ user, account, profile, email, credentials }: any) {
-      const isAllowedToSignIn = user.active;
-      if (isAllowedToSignIn) {
-        return true;
-      } else {
-        return false;
-      }
+      if (!user.active) return false;
+      return true;
     },
     async jwt({ token, account, profile, user }: any) {
       if (user) {
         token.active = user.active;
+        token.role = user.role;
+        token.id = user.id;
       }
 
       return token;
@@ -63,4 +67,5 @@ export const authOptions: AuthOptions = {
   },
 };
 
-export default NextAuth(authOptions);
+const handler = NextAuth(authOptions);
+export { handler as GET, handler as POST };

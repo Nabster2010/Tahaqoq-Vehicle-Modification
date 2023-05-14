@@ -1,3 +1,4 @@
+import { siteConfig } from "@/config/site";
 import { arabicDate, finalResult, formatDate } from "@/lib/utils/helpers";
 import Image from "next/image";
 
@@ -12,7 +13,10 @@ const Report = ({ vehicle }: any) => {
           {/* rigth section */}
           <div className="flex flex-col items-start justify-start flex-1">
             <h1 className="subtitle">شركة التحقق الدولية لفحص السيارات</h1>
-            <h1>TAHAQOQ International Vehicle Inspection Center - DAMMAM</h1>
+            <h1>
+              TAHAQOQ International Vehicle Inspection Center -{" "}
+              {siteConfig.branch}
+            </h1>
           </div>
           {/* middle section */}
           <div className="flex flex-col items-center justify-center flex-1">
@@ -25,7 +29,7 @@ const Report = ({ vehicle }: any) => {
               <span className="subtitle">تاريخ:</span>
               <span>{formatDate(createdAt)}</span>
               <span className="subtitle">الموافق:</span>
-              <span>{arabicDate(createdAt)}</span>
+              <span className="whitespace-nowrap">{arabicDate(createdAt)}</span>
             </div>
           </div>
 
@@ -39,9 +43,9 @@ const Report = ({ vehicle }: any) => {
             />
           </div>
         </div>
-        <div className="w-full h-[1.5px] mt-2 bg-gray-500 " />
       </header>
-      <main className="grow">
+      <div className="w-full h-[1.5px] mt-2 bg-gray-500 "></div>
+      <main className="">
         {/* معلومات المركبه */}
         <section className="mt-4">
           <h1 className="text-lg text-center  mb-0.5 title">
@@ -319,10 +323,10 @@ const Report = ({ vehicle }: any) => {
 
         <div className="flex items-start justify-between">
           <div className="flex-1 text-sm">
-            <h1>مركز التحقق الدولية لفحص السيارات بالدمام</h1>
-            <h1>العنوان : الخالدية الجنوبية،الدمام،السعودية</h1>
-            <h1>الهاتف : ٠٥٧٧٩٢٩١٨٩</h1>
-            <h1>ايميل : info@tahaqoq.com</h1>
+            <h1>مركز التحقق الدولية لفحص السيارات {siteConfig.ar_branch}</h1>
+            <h1>العنوان : {siteConfig.ar_address}</h1>
+            <h1>الهاتف : {siteConfig.phone}</h1>
+            <h1>ايميل : {siteConfig.email}</h1>
           </div>
           <div className="flex flex-col items-center justify-between flex-1">
             <Image
@@ -334,10 +338,10 @@ const Report = ({ vehicle }: any) => {
             <span className="text-sm">صفحة ١ من ١</span>
           </div>
           <div className="flex-1 text-end">
-            <h1>TAHAQOQ Vehicle Inspection Center Dammam</h1>
-            <h1>Address: Alkhalidiyah , Dammam ,KSA</h1>
-            <h1> Phone: 0577929189</h1>
-            <h1>Email : info@tahaqoq.com</h1>
+            <h1>TAHAQOQ Vehicle Inspection Center {siteConfig.branch}</h1>
+            <h1>Address: {siteConfig.address}</h1>
+            <h1> Phone: {siteConfig.phone}</h1>
+            <h1>Email : {siteConfig.email}</h1>
           </div>
         </div>
       </footer>

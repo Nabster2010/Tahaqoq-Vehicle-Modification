@@ -13,7 +13,7 @@ const Vehicle = ({ vehicle }: any) => {
       <td>
         <div
           className={classNames(
-            "dark:text-white badge w-24 h-8 font-bold",
+            "dark:text-white badge w-16 h-8 font-bold",
             result === "PASS" && "badge-success",
             result === "FAIL" && "badge-error",
             result === "N/A" && "badge-warning"
@@ -36,22 +36,26 @@ const Vehicle = ({ vehicle }: any) => {
         </Link>
       </td>
       <td>
-        <Link
-          target={"_blank"}
-          href={`/${vehicle.id}/report`}
-          className={classNames("btn ", result === "N/A" && "btn-disabled")}
-        >
-          Report
-        </Link>
+        <div className="flex gap-1 ">
+          <Link
+            target={"_blank"}
+            href={`/${vehicle.id}/report`}
+            className={classNames("btn", result === "N/A" && "btn-disabled")}
+          >
+            Report
+          </Link>
+        </div>
       </td>
-      <td>
-        <Link
-          target={"_blank"}
-          href={`/${vehicle.id}/letter`}
-          className={classNames("btn ", result === "N/A" && "btn-disabled")}
-        >
-          Letter
-        </Link>
+      <td className="">
+        <div className="flex gap-1">
+          <Link
+            target={"_blank"}
+            href={`/${vehicle.id}/letter`}
+            className={classNames("btn ", result === "N/A" && "btn-disabled")}
+          >
+            Letter
+          </Link>
+        </div>
       </td>
     </tr>
   );

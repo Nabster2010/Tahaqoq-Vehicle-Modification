@@ -3,13 +3,17 @@
 
 generator client {
   provider = "prisma-client-js"
+
 }
 
+// datasource db {
+//   provider = "sqlite"
+//   url = "file:./dev.db"
+// }
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url = env("DATABASE_URL")
-
- 
+  relationMode = "prisma"
 }
 
 model User {
@@ -43,6 +47,8 @@ model Vehicle {
   result        Result?
   User          User     @relation(fields: [userId], references: [email])
   userId        String
+
+  @@index([userId])
 }
 
 model Result {
@@ -64,6 +70,7 @@ model Result {
   chassis               Chassis?
   remarks               String?
   createdAt             DateTime       @default(now())
+  @@index([vehicleId])
 }
 
 model Engine {
@@ -72,6 +79,7 @@ model Engine {
   modification Boolean  @default(false)
   pass         Boolean  @default(true)
   createdAt    DateTime @default(now())
+  @@index([id])
 }
 
 model Transmision {
@@ -80,6 +88,7 @@ model Transmision {
   modification Boolean  @default(false)
   pass         Boolean  @default(true)
   createdAt    DateTime @default(now())
+  @@index([id])
 }
 
 model Exhaust {
@@ -88,6 +97,7 @@ model Exhaust {
   modification Boolean  @default(false)
   pass         Boolean  @default(true)
   createdAt    DateTime @default(now())
+  @@index([id])
 }
 
 model Fuel {
@@ -96,6 +106,7 @@ model Fuel {
   modification Boolean  @default(false)
   pass         Boolean  @default(true)
   createdAt    DateTime @default(now())
+  @@index([id])
 }
 
 model Brake {
@@ -104,6 +115,7 @@ model Brake {
   modification Boolean  @default(false)
   pass         Boolean  @default(true)
   createdAt    DateTime @default(now())
+  @@index([id])
 }
 
 model Edges {
@@ -112,6 +124,7 @@ model Edges {
   modification Boolean  @default(false)
   pass         Boolean  @default(true)
   createdAt    DateTime @default(now())
+  @@index([id])
 }
 
 model Steering {
@@ -120,6 +133,7 @@ model Steering {
   modification Boolean  @default(false)
   pass         Boolean  @default(true)
   createdAt    DateTime @default(now())
+  @@index([id])
 }
 
 model Wheels {
@@ -128,6 +142,7 @@ model Wheels {
   modification Boolean  @default(false)
   pass         Boolean  @default(true)
   createdAt    DateTime @default(now())
+  @@index([id])
 }
 
 model Entertainment {
@@ -136,6 +151,7 @@ model Entertainment {
   modification Boolean  @default(false)
   pass         Boolean  @default(true)
   createdAt    DateTime @default(now())
+  @@index([id])
 }
 
 model Chassis {
@@ -144,4 +160,5 @@ model Chassis {
   modification Boolean  @default(false)
   pass         Boolean  @default(true)
   createdAt    DateTime @default(now())
+  @@index([id])
 }

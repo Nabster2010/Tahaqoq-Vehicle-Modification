@@ -1,4 +1,4 @@
-@page {
+/* @page {
   size: A4;
 }
 
@@ -24,3 +24,9 @@ tr {
 tr {
   @apply leading-4;
 }
+
+@media print {
+  #print-btn {
+    display: none;
+  }
+} */

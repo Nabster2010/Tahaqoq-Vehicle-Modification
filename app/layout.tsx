@@ -1,22 +1,6 @@
 import "./globals.css";
-import { Cairo, Inter, Noto_Naskh_Arabic } from "next/font/google";
-import { getServerSession } from "next-auth";
-import AuthContext from "./context/authContext";
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { MyThemeContextProvider } from "./context/themeContext";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
-const cairo = Cairo({
-  subsets: ["arabic", "latin"],
-  variable: "--font-cairo",
-});
-const noto = Noto_Naskh_Arabic({
-  subsets: ["arabic", "latin"],
-  variable: "--font-noto",
-});
+import AuthProvider from "./components/authProvider";
 
 export const metadata = {
   title: "Tahaqoq",
@@ -28,12 +12,11 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session: any = await getServerSession(authOptions);
   return (
-    <html lang="en" className={`${inter.variable} ${cairo.variable}`}>
-      <body className="flex flex-col min-h-screen">
+    <html lang="en">
+      <body className="flex flex-col min-h-screen ">
         <MyThemeContextProvider>
-          <AuthContext session={session}>{children}</AuthContext>
+          <AuthProvider>{children}</AuthProvider>
         </MyThemeContextProvider>
       </body>
     </html>

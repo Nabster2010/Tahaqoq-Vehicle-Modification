@@ -1,10 +1,11 @@
-import "../../app/globals.css";
+"use client";
+import "../../globals.css";
 import classNames from "classnames";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
-export default function Register() {
+export default function RegisterPage() {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [isFetching, setIsFetching] = useState(false);

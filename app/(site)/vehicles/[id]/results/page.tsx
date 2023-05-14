@@ -1,7 +1,7 @@
 import { getVehicleById } from "@/lib/prisma/vehicle";
-import { Vehicle } from "@/types";
 import AddResultForm from "../../../../components/addResultForm";
 import UpdateResultForm from "../../../../components/updateResultForm";
+import { notFound } from "next/navigation";
 
 const page = async ({
   params,
@@ -13,7 +13,7 @@ const page = async ({
   const vehicleId = parseInt(params.id);
   const vehicle: any = await getVehicleById(vehicleId);
 
-  if (!vehicle) return <h1>no vehicle found</h1>;
+  if (!vehicle) return notFound();
 
   const vehicleHasResult = vehicle?.result !== null;
 

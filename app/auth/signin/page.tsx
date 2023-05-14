@@ -1,16 +1,45 @@
-import "../../app/globals.css";
-import type {
-  GetServerSidePropsContext,
-  InferGetServerSidePropsType,
-} from "next";
-import { getCsrfToken } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
+"use client";
+import "../../globals.css";
+import { signIn, useSession } from "next-auth/react";
+import { redirect, useRouter, useSearchParams } from "next/navigation";
+import { useState, useTransition } from "react";
+import { useForm } from "react-hook-form";
+import classNames from "classnames";
 
-export default function SignIn({
-  csrfToken,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function SignInPage() {
   const searchParams = useSearchParams();
-  const error = searchParams?.get("error");
+  const callbackUrl = searchParams?.get("callbackUrl");
+  const { data: session } = useSession();
+  if (session) {
+    redirect(callbackUrl || "/");
+  }
+
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState<string | null>(null);
+  const [isFetching, setIsFetching] = useState(false);
+  const isMutating = isFetching || isPending;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+  const onSubmit = async (data: any) => {
+    setIsFetching(true);
+    const res = await signIn("credentials", {
+      ...data,
+      callbackUrl,
+      redirect: false,
+    });
+    setError(res?.error || null);
+
+    setIsFetching(false);
+    startTransition(() => {
+      router.push(callbackUrl || "/");
+    });
+    reset();
+  };
   return (
     <section className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -23,16 +52,13 @@ export default function SignIn({
 
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+            <h1 className="text-xl font-bold leading-tight tracking-tight text-center text-gray-900 md:text-2xl dark:text-white">
               Login
             </h1>
             <form
+              onSubmit={handleSubmit(onSubmit)}
               className="space-y-4 md:space-y-6"
-              method="post"
-              action="/api/auth/callback/credentials"
             >
-              <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-
               <div>
                 <label
                   htmlFor="email"
@@ -41,10 +67,13 @@ export default function SignIn({
                   Your email
                 </label>
                 <input
+                  {...register("email", { required: true })}
                   type="email"
-                  name="email"
                   id="email"
-                  className="w-full input input-bordered"
+                  className={classNames(
+                    "input input-bordered w-full ",
+                    errors.email && "input-error"
+                  )}
                   placeholder="name@company.com"
                 />
               </div>
@@ -56,11 +85,14 @@ export default function SignIn({
                   Password
                 </label>
                 <input
+                  {...register("password", { required: true })}
                   type="password"
-                  name="password"
                   id="password"
                   placeholder="••••••••"
-                  className="w-full input input-bordered"
+                  className={classNames(
+                    "input input-bordered w-full ",
+                    errors.password && "input-error"
+                  )}
                 />
               </div>
               {error && error === "CredentialsSignin" && (
@@ -83,9 +115,11 @@ export default function SignIn({
                   </div>
                 </div>
               )}
-
-              <button type="submit" className="btn btn-block">
-                SIGN IN
+              <button
+                type="submit"
+                className={classNames("btn btn-block", isMutating && "loading")}
+              >
+                Login
               </button>
             </form>
           </div>
@@ -93,12 +127,4 @@ export default function SignIn({
       </div>
     </section>
   );
-}
-
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  return {
-    props: {
-      csrfToken: await getCsrfToken(context),
-    },
-  };
 }
